@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: rgb(135, 135, 135);
+  font-size: 24px;
+  font-weight: 100;
+  line-height: 28px;
+  margin: 0;
+}
+
+ul {
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+li {
+  color: rgb(135, 135, 135);
+  font-size: 16px;
+  font-weight: 100;
+  height: 19px;
+  line-height: 1;
+  list-style: none;
+}
+
+.weatherapp {
+  border: 2px solid black;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  max-width: 600px; /*so it doesn't go across the page*/
+}
+
+.temperature {
+  color: rgb(33, 33, 33);
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.units {
+  position: relative;
+  top: -32px;
+}
+
+.search {
+  color: white;
+  background-color: teal;
+}
+.search-form {
+  margin-bottom: 20px;
+}
