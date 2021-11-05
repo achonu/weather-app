@@ -60,8 +60,13 @@ form.addEventListener("submit", displayCity);
 
 // weather api functions
 function displayTemp(response) {
+  h1.innerHTML = response.data.name; // always good to use the name the api is giving you back
   let temperatureValue = Math.round(response.data.main.temp);
   temperature.innerHTML = `${temperatureValue}`;
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
 }
 
 function showWeatherCurrent(response) {
