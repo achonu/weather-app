@@ -47,20 +47,33 @@ let form = document.querySelector("#search-submit");
 let h1 = document.querySelector("h1");
 let searchCity = document.querySelector("#search_input");
 let temperature = document.querySelector(".temperature");
-let apiKey = "512bbbf4dd2812df6bfbfa05efb65bf4";
+
+function search(city) {
+  let apiKey = "512bbbf4dd2812df6bfbfa05efb65bf4";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemp);
+}
 
 function displayCity(event) {
   event.preventDefault();
   h1.innerHTML = searchCity.value;
   let city = searchCity.value;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayTemp);
+  search(city);
 }
 form.addEventListener("submit", displayCity);
 
-// weather api functions
+function searchLocation(position) {
+  let apiKey = "512bbbf4dd2812df6bfbfa05efb65bf4";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemp);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+}
+
 function displayTemp(response) {
-  h1.innerHTML = response.data.name; // always good to use the name the api is giving you back
+  h1.innerHTML = response.data.name;
   let temperatureValue = Math.round(response.data.main.temp);
   temperature.innerHTML = `${temperatureValue}`;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -75,3 +88,10 @@ function showWeatherCurrent(response) {
   let temperatureCurrentValue = Math.round(response.data.main.temp);
   temperature.innerHTML = `${temperatureCurrentValue}`;
 }
+
+search("Abuja"); // search onload to display a city
+
+let currentLocationBtn = document.querySelector("#current-location-btn");
+currentLocationBtn.addEventListener("click", getCurrentLocation);
+
+navigator.geolocation.getCurrentPosition(searchLocation);
