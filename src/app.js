@@ -70,6 +70,7 @@ function searchLocation(position) {
 
 function getCurrentLocation(event) {
   event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
 function displayTemp(response) {
@@ -89,9 +90,7 @@ function showWeatherCurrent(response) {
   temperature.innerHTML = `${temperatureCurrentValue}`;
 }
 
-search("Abuja"); // search onload to display a city
+search("Abuja");
 
 let currentLocationBtn = document.querySelector("#current-location-btn");
 currentLocationBtn.addEventListener("click", getCurrentLocation);
-
-navigator.geolocation.getCurrentPosition(searchLocation);
